@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\TaskRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
@@ -12,22 +13,28 @@ class Task
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+		#[Groups(['task:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+		#[Groups(['task:read'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+		#[Groups(['task:read'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 50)]
+		#[Groups(['task:read'])]
     private ?string $status = null;
 
     #[ORM\Column]
+		#[Groups(['task:read'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
+		#[Groups(['task:read'])]
     private ?German $user = null;
 
     public function getId(): ?int
