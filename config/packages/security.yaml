@@ -10,9 +10,6 @@ security:
                 class: App\Entity\German
                 property: email
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
         login:
             pattern: ^/api/login
             stateless: true
@@ -22,6 +19,7 @@ security:
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
 
         api:
             pattern: ^/api
